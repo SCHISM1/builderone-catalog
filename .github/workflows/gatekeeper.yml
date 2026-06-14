@@ -1,0 +1,62 @@
+# Gatekeeper — runs on every pull request to builderone-catalog.
+# Once these checks are marked "required" in the main ruleset, nothing
+# merges to main until they pass. (Python / uv pipeline version.)
+name: Gatekeeper
+
+on:
+  pull_request:
+    # ready_for_review is included so a PR opened as a draft and later marked
+    # ready still triggers the gate (the draft gotcha from the app build).
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write   # lets the Claude review post a PR comment
+  id-token: write
+
+jobs:
+  lint-type-test:
+    name: Lint, typecheck, test & audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8
+        with:
+          enable-cache: true
+
+      - name: Sync dependencies (from the committed lockfile)
+        run: uv sync --locked
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Typecheck
+        run: uv run mypy .
+
+      - name: Test
+        run: uv run pytest
+
+      - name: Dependency audit
+        run: |
+          uv export --no-dev --no-emit-project --no-hashes \
+            --format requirements-txt -o audit-reqs.txt
+          uvx pip-audit -r audit-reqs.txt
+
+  review:
+    name: Claude review
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: >
+            Review this pull request for bugs and security issues, and for any
+            violation of the repo's CLAUDE.md — especially the safety invariants:
+            the strict typed engine-fields must never trust the quarantined
+            `attributes` blob; a conflict on a catastrophic engine-field must be
+            flagged to a human, never auto-picked; and all external calls
+            (vendor APIs, the LLM, embeddings, Telegram) must be mocked, with no
+            live network in CI. Post a concise summary as a PR comment.
