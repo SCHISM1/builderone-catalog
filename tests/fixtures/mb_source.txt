@@ -1,0 +1,13 @@
+ASUS ROG STRIX X670E-E GAMING WIFI
+Socket: AM5 | Form Factor: ATX | Memory: DDR5
+Memory Slots: 4 | Max Memory: 128GB
+M.2 Slots: 5 | SATA Ports: 6
+Chipset: AMD X670E
+Price: $499.99
+---
+MSI MAG B650 TOMAHAWK WIFI
+Socket: AM5 | Form Factor: ATX | Memory: DDR5
+Memory Slots: 4 | Max Memory: 128GB
+M.2 Slots: 3 | SATA Ports: 6
+Chipset: AMD B650
+Price: $199.99
