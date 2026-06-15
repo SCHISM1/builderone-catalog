@@ -19,14 +19,16 @@ __all__ = [
 ProvenanceMethod = Literal["authoritative-verified", "llm-extracted", "corroborated"]
 VerificationStatus = Literal["verified", "extracted", "verify"]
 
-# The exact catastrophic-field set from the spec §1.
+# The exact catastrophic-field set from the spec §1 + 4b extension.
 # A source conflict on any of these always routes to a human — never auto-picked.
+# form_factors_supported is the case-specific equivalent of form_factor (spec 4b §2).
 CATASTROPHIC_ENGINE_FIELDS: frozenset[str] = frozenset(
     {
         "socket",
         "ram_type",
         "ddr_generation",
         "form_factor",
+        "form_factors_supported",
         "wattage",
         "tdp_watts",
         "interface",

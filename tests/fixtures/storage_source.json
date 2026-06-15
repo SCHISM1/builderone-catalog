@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Samsung 990 Pro 2TB",
+    "interface": "M.2 NVMe",
+    "form_factor": "M.2 2280",
+    "capacity_gb": 2000,
+    "read_mb_s": 7450,
+    "write_mb_s": 6900,
+    "retailer_refs": {"amazon": "B0BHJJ9Y77"},
+    "price_snapshot": 149.99
+  },
+  {
+    "name": "Western Digital WD Blue 4TB SATA",
+    "interface": "SATA",
+    "form_factor": "3.5\"",
+    "capacity_gb": 4000,
+    "rpm": 5400,
+    "retailer_refs": {"amazon": "B0088PUEPK"},
+    "price_snapshot": 79.99
+  },
+  {
+    "name": "Crucial MX500 1TB SATA SSD",
+    "interface": "SATA",
+    "form_factor": "2.5\"",
+    "capacity_gb": 1000,
+    "read_mb_s": 560,
+    "write_mb_s": 510,
+    "retailer_refs": {}
+  }
+]

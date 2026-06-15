@@ -1,0 +1,15 @@
+Fractal Design Torrent ATX Mid Tower
+Supported Form Factors: ATX, mATX, ITX
+Maximum GPU Length: 461mm
+Maximum CPU Cooler Height: 188mm
+Drive Bays: 2x 3.5", 4x 2.5"
+Front Panel: USB 3.1 Type-A x2, USB-C 3.2 Gen 2
+Dimensions: 242 x 530 x 527mm
+Weight: 11.3kg
+---
+Lian Li O11 Dynamic EVO
+Form Factor Support: ATX, mATX, Mini-ITX, E-ATX
+Max GPU Length: 446mm
+Max CPU Cooler Height: 167mm
+Radiator Support: Up to 420mm front, 360mm top, 360mm side
+Drive Bays: 2x 3.5", 4x 2.5"
