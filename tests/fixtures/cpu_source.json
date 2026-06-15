@@ -1,0 +1,20 @@
+[
+  {
+    "name": "AMD Ryzen 9 7950X",
+    "socket": "AM5",
+    "tdp_watts": 170,
+    "cores": 16,
+    "threads": 32,
+    "retailer_refs": {"bestbuy": "6521712"},
+    "price_snapshot": 549.99
+  },
+  {
+    "name": "Intel Core i9-13900K",
+    "socket": "LGA1700",
+    "tdp_watts": 253,
+    "cores": 24,
+    "threads": 32,
+    "retailer_refs": {"bestbuy": "6516900"},
+    "price_snapshot": 409.99
+  }
+]
