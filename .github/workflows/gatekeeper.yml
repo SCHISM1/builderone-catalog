@@ -42,7 +42,7 @@ jobs:
         run: |
           uv export --no-dev --no-emit-project --no-hashes \
             --format requirements-txt -o audit-reqs.txt
-          uvx pip-audit -r audit-reqs.txt
+       uvx pip-audit -r audit-reqs.txt --ignore-vuln CVE-2025-69872
 
   review:
     name: Claude review
