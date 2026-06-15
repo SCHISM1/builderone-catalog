@@ -15,7 +15,7 @@ class CasePart(SharedPart):
     max_cooler_height_mm: ProvenanceField[int] | None = None
 
     CATASTROPHIC_FIELDS: ClassVar[frozenset[str]] = frozenset(
-        {"form_factor"} & CATASTROPHIC_ENGINE_FIELDS
+        {"form_factors_supported"} & CATASTROPHIC_ENGINE_FIELDS
     )
 
     @classmethod

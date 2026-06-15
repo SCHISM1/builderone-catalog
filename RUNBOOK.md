@@ -1,4 +1,4 @@
-# Runbook — BuilderOne Catalog Pipeline (Run 4a)
+# Runbook — BuilderOne Catalog Pipeline (Run 4b)
 
 ## Prerequisites
 
@@ -39,7 +39,7 @@ Key env vars:
 
 ---
 
-## 3. Run a cycle (mocked — Run 4a default)
+## 3. Run a cycle (mocked — Run 4b default, all 8 categories)
 
 ```bash
 uv run catalog --version        # verify install
@@ -47,10 +47,18 @@ uv run catalog run --dry-run    # run pipeline on mock fixtures, print summary
 ```
 
 The pipeline:
-1. Runs source adapters (CPU + motherboard, currently mocked)
+1. Runs source adapters (all 8 categories, currently mocked):
+   - **CPU** (`CPUAdapter`) — clean-source JSON, authoritative-verified
+   - **Motherboard** (`MotherboardAdapter`) — LLM-extraction, llm-extracted
+   - **GPU** (`GPUAdapter`) — clean-source JSON, authoritative-verified
+   - **Storage** (`StorageAdapter`) — clean-source JSON, authoritative-verified
+   - **RAM** (`RAMAdapter`) — LLM-extraction, llm-extracted
+   - **PSU** (`PSUAdapter`) — LLM-extraction, llm-extracted
+   - **Case** (`CaseAdapter`) — LLM-extraction, llm-extracted
+   - **Cooler** (`CoolerAdapter`) — LLM-extraction, llm-extracted
 2. Writes `source_observations` to SQLite (`catalog.db`)
-3. Entity resolution + reconciliation → `parts` table
-4. Exports versioned JSON artifact (`catalog_export.json`)
+3. Entity resolution + reconciliation per category → `parts` table
+4. Exports versioned JSON artifact (`catalog_export.json`) — all 8 categories
 5. Any catastrophic conflicts → review queue (logged, Telegram in real mode)
 
 ---
@@ -111,20 +119,26 @@ systemctl list-timers catalog-pipeline.timer
 
 ---
 
-## 6. Swap mocks for real adapters (post-Run-4a checklist)
+## 6. Swap mocks for real adapters (post-Run-4b checklist)
 
-These steps happen in **Run 4b / the real-adapter swap pass** — not in Run 4a:
+These steps swap the mocked 4b adapters for real data sources. All 8 categories:
 
 - [ ] Add gitleaks scan (before any real keys are committed)
-- [ ] Implement `BestBuyCPUAdapter` using the Best Buy Products API
-- [ ] Implement `TechPowerUpAdapter` for motherboard specs (HTML scrape or API)
-- [ ] Implement `KeepaAdapter` for price snapshots
+- [ ] **CPU** — Implement `BestBuyCPUAdapter` using the Best Buy Products API
+- [ ] **Motherboard** — Implement `TechPowerUpMBAdapter` (HTML scrape or API)
+- [ ] **GPU** — Implement `TechPowerUpGPUAdapter` / `DBGPUAdapter` (TechPowerUp/DBGPU shape)
+- [ ] **Storage** — Implement `TechPowerUpStorageAdapter` (TechPowerUp shape)
+- [ ] **RAM** — Wire `RAMAdapter` to real raw-text source; replace mock extractor
+- [ ] **PSU** — Wire `PSUAdapter` to real raw-text source; replace mock extractor
+- [ ] **Case** — Wire `CaseAdapter` to real raw-text source; replace mock extractor
+- [ ] **Cooler** — Wire `CoolerAdapter` to real raw-text source; replace mock extractor
 - [ ] Replace `MockLLMExtractor` with `InstructorLLMExtractor(openai.OpenAI(api_key=...))`
 - [ ] Replace `MockEmbeddingClient` with a real embeddings call
 - [ ] Replace `MockTelegramClient` with `HttpxTelegramClient(token=...)`
+- [ ] Implement `KeepaAdapter` for price snapshots (deferred — price-refresh pass)
 - [ ] Set `LLM_API_KEY`, `TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID` in `.env`
-- [ ] Run a full cycle against live data; verify export artifact
-- [ ] Verify live Telegram review messages on phone
+- [ ] Run a full cycle against live data across all 8 categories; verify export artifact
+- [ ] Verify live Telegram review messages on phone (catastrophic conflict demo)
 - [ ] Set up systemd timer (step 5 above)
 
 ---

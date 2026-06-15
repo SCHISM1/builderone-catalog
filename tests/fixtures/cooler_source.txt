@@ -1,0 +1,18 @@
+Noctua NH-D15 chromax.black
+Type: Air Cooler (Dual Tower)
+Height: 165mm
+Width: 150mm
+Depth: 161mm
+Fan: 2x 140mm NF-A15 HS-PWM
+TDP Rating: 250W+
+Socket Support: LGA1700, LGA1200, AM5, AM4
+Weight: 1320g
+---
+be quiet! Dark Rock Pro 4
+Cooler Type: Air Tower Dual Fan
+Total Height: 163mm
+Fan Size: 1x 135mm, 1x 120mm
+Noise Level: 24.3 dB(A)
+Nominal Speed: 1500 RPM
+Socket Compatibility: LGA1700, AM5, AM4
+TDP: 250W

@@ -1,0 +1,16 @@
+Corsair Vengeance DDR5-6000 32GB (2x16GB) Kit
+Type: DDR5
+Speed: 6000 MHz
+Kit Configuration: 2x 16GB (32GB total)
+Timings: CL30-36-36-76
+Voltage: 1.35V
+XMP 3.0 support
+Form factor: DIMM
+---
+G.Skill Trident Z5 RGB DDR5-7200 64GB (2x32GB)
+Memory Type: DDR5
+Rated Speed: 7200 MT/s
+Modules: 2 x 32GB (64GB)
+Latency: CL34-45-45-115
+Voltage: 1.40V
+XMP 3.0 / EXPO support

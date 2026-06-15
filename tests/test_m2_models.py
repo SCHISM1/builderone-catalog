@@ -211,9 +211,10 @@ def test_discriminated_union_wrong_category() -> None:
 # ── Catastrophic fields ───────────────────────────────────────────────────────
 
 def test_catastrophic_field_set_exact() -> None:
-    """The exact catastrophic field set from the spec §1."""
+    """The catastrophic field set from spec §1 extended in 4b with form_factors_supported."""
     expected = frozenset({
         "socket", "ram_type", "ddr_generation", "form_factor",
+        "form_factors_supported",
         "wattage", "tdp_watts", "interface", "m2_slots", "sata_ports",
     })
     assert CATASTROPHIC_ENGINE_FIELDS == expected
